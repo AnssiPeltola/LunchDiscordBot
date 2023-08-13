@@ -1,24 +1,15 @@
-require("dotenv").config();
+// Require the necessary discord.js classes
+const { Client, Events, GatewayIntentBits } = require("discord.js");
+const { token } = require("./config.json");
 
-const Discord = require("discord.js");
-const client = new Discord.Client();
+// Create a new client instance
+const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
-const token = process.env.BOT_TOKEN;
-
-client.once("ready", () => {
-  console.log(`Logged in as ${client.user.tag}!`);
+// When the client is ready, run this code (only once)
+// We use 'c' for the event parameter to keep it separate from the already defined 'client'
+client.once(Events.ClientReady, (c) => {
+  console.log(`Ready! Logged in as ${c.user.tag}`);
 });
 
-client.on("message", (message) => {
-  if (message.content.toLowerCase() === "!weeklymeny") {
-    // Replace this with your code to send the weekly menu
-    message.channel.send("Here is the weekly menu:");
-  }
-
-  if (message.content.toLowerCase() === "!todaymenu") {
-    // Replace this with your code to send today's menu
-    message.channel.send("Here is today's menu:");
-  }
-});
-
+// Log in to Discord with your client's token
 client.login(token);
