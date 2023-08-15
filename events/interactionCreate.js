@@ -1,5 +1,4 @@
 const { Events } = require("discord.js");
-const { cooldowns } = client;
 
 module.exports = {
   name: Events.InteractionCreate,
