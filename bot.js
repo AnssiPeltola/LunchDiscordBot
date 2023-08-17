@@ -1,7 +1,8 @@
 const fs = require("node:fs");
 const path = require("node:path");
 const { Client, Collection, Events, GatewayIntentBits } = require("discord.js");
-const { token } = require("./config.json");
+const { token, clientId, guildId, menuChannelId } = require("./config.json");
+// const { postMenu } = require("./helpers/menuPoster.js");
 
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
@@ -30,6 +31,28 @@ for (const folder of commandFolders) {
 
 client.once(Events.ClientReady, () => {
   console.log("Ready!");
+
+  // Daily post what is for lunch
+  const today = new Date().getDay();
+  switch (today) {
+    case 1:
+      postMenu("Monday");
+      break;
+    case 2:
+      postMenu("Tuesday");
+      break;
+    case 3:
+      postMenu("Wednesday");
+      break;
+    case 4:
+      postMenu("Thursday");
+      break;
+    case 5:
+      postMenu("Friday");
+      break;
+    default:
+      console.log("No menu posting today.");
+  }
 });
 
 client.on(Events.InteractionCreate, async (interaction) => {
@@ -47,7 +70,7 @@ client.on(Events.InteractionCreate, async (interaction) => {
 
   const now = Date.now();
   const timestamps = cooldowns.get(command.data.name);
-  const defaultCooldownDuration = 3;
+  const defaultCooldownDuration = 5;
   const cooldownAmount = (command.cooldown ?? defaultCooldownDuration) * 1000;
 
   if (timestamps.has(interaction.user.id)) {
@@ -75,5 +98,13 @@ client.on(Events.InteractionCreate, async (interaction) => {
     });
   }
 });
+
+function postMenu(day) {
+  const channel = client.channels.cache.get(menuChannelId);
+  if (channel) {
+    const menu = `Here's the school lunch menu for ${day}:\n\n`; // Fetch menu from your source
+    channel.send(menu);
+  }
+}
 
 client.login(token);
