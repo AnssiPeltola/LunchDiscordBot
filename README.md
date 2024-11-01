@@ -1,6 +1,6 @@
 # LunchDiscordBot
 
-School Lunch Bot is a Discord bot designed to fetch and post the daily and weekly lunch menus for a school cafeteria. The bot can automatically post the daily menu every morning at 9 AM and allows users to fetch the menu on demand using slash commands. Additionally, the bot includes a sleep mode feature to disable menu posting during periods like summer vacation.
+LunchBot is a Discord bot designed to fetch and post the daily and weekly lunch menus for a school cafeteria. The bot can automatically post the daily menu every morning at 9 AM and allows users to fetch the menu on demand using slash commands. Additionally, the bot includes a sleep mode feature to disable menu posting during periods like summer vacation.
 
 ## Features
 
