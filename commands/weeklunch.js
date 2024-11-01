@@ -33,13 +33,15 @@ async function fetchWeeklyMenu() {
   // Loop through each day and extract the menu
   for (const day of days) {
     const dayMenuRegex = new RegExp(
-      `${day} \\d{1,2}\\.\\d{1,2}\\.\\d{4}.*?(?=(MAANANTAI|TIISTAI|KESKIVIIKKO|TORSTAI|PERJANTAI|window|<script|$))`,
+      `${day}\\s*\\d{1,2}\\.\\d{1,2}\\.\\d{4}.*?(?=(MAANANTAI|TIISTAI|KESKIVIIKKO|TORSTAI|PERJANTAI|window|<script|$))`,
       "si" // case insensitive, dot matches newlines
     );
     const dayMenu = weekText.match(dayMenuRegex); // Match the menu for the specified day
 
     if (dayMenu) {
-      const dayAndDateMatch = dayMenu[0].match(/(\w+ \d{2}\.\d{2}\.\d{4})/); // Extract the day and date
+      const dayAndDateMatch = dayMenu[0].match(
+        /(\w+\s+\d{1,2}\.\d{1,2}\.\d{4})/
+      ); // Extract the day and date
       const dayAndDate = dayAndDateMatch ? dayAndDateMatch[0] : day; // Use the extracted day and date or the day if not found
 
       const menuItems = dayMenu[0]
