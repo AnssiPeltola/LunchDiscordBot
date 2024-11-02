@@ -22,6 +22,11 @@ LunchDiscordBot is a Discord bot created to fetch and post the daily and weekly 
 - npm (Node Package Manager)
 - A Discord bot token
 
+### Adding the Bot to Your Server
+If you’d like to add LunchDiscordBot to your own Discord server, please contact me to obtain the OAuth2 authorization link. This link allows you to invite the bot to your server with the necessary permissions.
+
+Email: anssipeltola@hotmail.com
+
 ### Setup
 
 1. **Clone the repository**:
